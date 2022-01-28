@@ -14,7 +14,8 @@ import os
 app = Flask(__name__)
 ckeditor = CKEditor(app)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:gZ$Ecn5VdqUET*!t7X@localhost/our_users'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lwevkoqlakxspy:2e2d0b42349390a712732b105b8233058d6b33542671f9f4d278c8b386208eda@ec2-3-233-100-43.compute-1.amazonaws.com:5432/dojhrll5o470b'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:gZ$Ecn5VdqUET*!t7X@localhost/our_users'
 app.config['SECRET_KEY'] = "my super secret key that no one is supposed to know"
 UPLOAD_FOLDER = 'static/images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -358,7 +359,7 @@ class Users(db.Model, UserMixin):
     name = db.Column(db.String(200), nullable = False)
     email = db.Column(db.String(120), unique = True)
     favorite_color = db.Column(db.String(120))
-    about_author = db.Column(db.Text(500), nullable=True)
+    about_author = db.Column(db.Text(), nullable=True)
     date_added = db.Column(db.DateTime, default = datetime.utcnow)
     profile_pic = db.Column(db.String(255), nullable=True)
     password_hash = db.Column(db.String(128))
